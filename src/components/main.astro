@@ -9,22 +9,36 @@ import Settings from "@components/Settings.astro"
     <div class="intro">
         <h2>Coriander</h2>
         <h3>Yet another Random Gradients Picker</h3>
+        <code>background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);</code>
     </div>
     <Settings />
 </main>
 
-<script lang="js">
+<script lang="javascript">
     window.RGP = {};
+    RGP.Current = {
+            ColorArray: ["#91e9c3", "#eaaa8e"],
+            LinearGradient: "linear-gradient(45deg, #91e9c3, #eaaa8e)"
+        };
     RGP.gen = function (ColorCount, degree) {
+        // document.querySelector("span#ProcessTotal").innerHTML = ColorCount;
+
         let ColorArray = [];
         for (let i = 0; i < ColorCount; i++) {
             ColorArray[i] = "#" + Math.floor( Math.random() * 0xffffff ).toString(16);
+            // document.querySelector("span#ProcessNow").innerHTML = i;
         }
-        let Target = `linear-gradient(${degree}deg, ${ColorArray.toString().replace(/,/gi, "\, ")})`
-        return Target;
+        // document.querySelector("span#ProcessNow").innerHTML = ColorCount;
+
+        return {
+            ColorArray: ColorArray,
+            LinearGradient: `linear-gradient(${degree || 0}deg, ${ColorArray.toFormattedString()})`
+        };
     }
 
-    // linear-gradient(45deg, rgb(212, 248, 248), rgb(52, 147, 215), rgb(139, 43, 124))
+    Array.prototype.toFormattedString = function () {
+        return this.toString().replace(/,/gi, "\, ")
+    }
 </script>
 
 
@@ -34,7 +48,7 @@ import Settings from "@components/Settings.astro"
         width: 100%;
         flex-wrap: wrap;
 
-        background-image: linear-gradient(45deg, rgb(145, 233, 195), rgb(234, 170, 142));
+        background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
 
         div {
             width: 100%;

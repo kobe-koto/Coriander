@@ -1,5 +1,4 @@
-# koto.cc v3
+# Coriander
 
-## brand new splash screen build with Astro.js & SCSS
 
-Personal website, koto.cc
+## Yet another Random Gradients Picker

@@ -5,21 +5,44 @@ import IconRefersh from "@icons/arrows-rotate.astro"
 ---
 <div class="settings">
     <h3>Settings</h3>
-    <input id="degree" type="number" placeholder="Degree" />
-    <input id="ColorCount" type="number" placeholder="Color Count" />
-    <br/><br/>
+    <table>
+        <tr>
+            <td>Degree: </td>
+            <td><input id="degree" type="number" placeholder="Degree" /></td>
+        </tr>
+        <tr>
+            <td>Color Count: </td>
+            <td><input id="ColorCount" type="number" placeholder="Color Count" /></td>
+        </tr>
+    </table>
+    <br/>
+    <!-- <p>Process: <span id="ProcessNow">?</span>/<span id="ProcessTotal">?</span></p> -->
     <button><IconRefersh/>&nbsp;Gen</button>
 </div>
 
 <script lang="javascript">
     document.querySelector("input#ColorCount").value = "2";
     document.querySelector("input#degree").value = "45";
+    document.querySelector("#degree").onkeyup = 
+        function () {
+            if (this.value > 360 || this.value < -360) {
+                this.value = this.value > 360 ? 360 : -360;
+                //alert("degree not vaild")
+            }
+            RGP.Current.LinearGradient = `linear-gradient(${this.value || 0}deg, ${RGP.Current.ColorArray.toFormattedString()})`;
+
+            document.querySelector("main").style.backgroundImage = RGP.Current.LinearGradient;    
+            document.querySelector("div.intro > code").innerHTML = "background-image: " + RGP.Current.LinearGradient + ";";
+        }
+
 
     document.querySelector("div.settings > button").onclick = function () {
-        let ColorCount = document.querySelector("input#ColorCount").value;
-        let degree = document.querySelector("input#degree").value;
-        let Gradient = RGP.gen(ColorCount, degree);
-        document.querySelector("main").style.backgroundImage = Gradient;
+        let ColorCount = document.querySelector("input#ColorCount").value,
+            degree = document.querySelector("input#degree").value;
+        RGP.Current = RGP.gen(ColorCount, degree);
+
+        document.querySelector("main").style.backgroundImage = RGP.Current.LinearGradient;
+        document.querySelector("div.intro > code").innerHTML = "background-image: " + RGP.Current.LinearGradient + ";";
     }
 </script>
 
@@ -31,7 +54,16 @@ import IconRefersh from "@icons/arrows-rotate.astro"
         background-color: rgba(0,0,0,0.6);
         padding: 12px 14px;
         margin: 0 auto;
-
         text-align: center;
+        overflow-x: auto;
     }
+
+    table {
+        margin: 0 auto;
+        tr td:first-child() {
+            text-align: left;
+            padding-right: 8px
+        }
+    }
+    
 </style>
