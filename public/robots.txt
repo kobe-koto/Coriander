@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /static/
+Disallow: /*.png$
+Disallow: /*.jpg$
+Disallow: /*.webp$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /404.html
+Crawl-delay: 60
+Allow:/

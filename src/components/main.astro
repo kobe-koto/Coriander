@@ -1,0 +1,48 @@
+---
+import Settings from "@components/Settings.astro"
+
+---
+
+
+<main>
+    <div data-role="placeholder"></div>
+    <div class="intro">
+        <h2>Coriander</h2>
+        <h3>Yet another Random Gradients Picker</h3>
+    </div>
+    <Settings />
+</main>
+
+<script lang="js">
+    window.RGP = {};
+    RGP.gen = function (ColorCount, degree) {
+        let ColorArray = [];
+        for (let i = 0; i < ColorCount; i++) {
+            ColorArray[i] = "#" + Math.floor( Math.random() * 0xffffff ).toString(16);
+        }
+        let Target = `linear-gradient(${degree}deg, ${ColorArray.toString().replace(/,/gi, "\, ")})`
+        return Target;
+    }
+
+    // linear-gradient(45deg, rgb(212, 248, 248), rgb(52, 147, 215), rgb(139, 43, 124))
+</script>
+
+
+<style lang="scss">
+    main {
+        height: 100vh;
+        width: 100%;
+        flex-wrap: wrap;
+
+        background-image: linear-gradient(45deg, rgb(145, 233, 195), rgb(234, 170, 142));
+
+        div {
+            width: 100%;
+        }
+
+        div.intro {
+            text-align: center;
+            text-shadow: #000 0 0px 4px;
+        }
+    }
+</style>
