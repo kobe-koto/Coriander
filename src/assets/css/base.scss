@@ -130,6 +130,17 @@ code, .code {
     border: none;
 }
 
+div.contents {
+    display: inline-block;
+    width: 80vw;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.6);
+    padding: 12px 14px;
+    margin: 0;
+    text-align: center;
+    overflow-x: auto;
+}
+
 ::selection {
     background-color: #6e598c40;
 }
