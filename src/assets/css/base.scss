@@ -93,6 +93,9 @@ button {
     background-color: #28292a;
     color: #f1f1ff;
 
+    &:hover {
+        transform: scale(1.05);
+    }
     &:active {
         transform: scale(.95);
     }
@@ -130,9 +133,8 @@ code, .code {
     border: none;
 }
 
-div.contents {
+.contents {
     display: inline-block;
-    width: 80vw;
     border-radius: 15px;
     background-color: rgba(0,0,0,0.6);
     padding: 12px 14px;

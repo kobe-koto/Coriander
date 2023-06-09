@@ -20,14 +20,11 @@ import Footer from "@components/Footer.astro"
             LinearGradient: "linear-gradient(45deg, #91e9c3, #eaaa8e)"
         };
     RGP.gen = function (ColorCount, degree) {
-        // document.querySelector("span#ProcessTotal").innerHTML = ColorCount;
 
         let ColorArray = [];
         for (let i = 0; i < ColorCount; i++) {
             ColorArray[i] = "#" + Math.floor( Math.random() * 0xffffff ).toString(16);
-            // document.querySelector("span#ProcessNow").innerHTML = i;
         }
-        // document.querySelector("span#ProcessNow").innerHTML = ColorCount;
 
         return {
             ColorArray: ColorArray,

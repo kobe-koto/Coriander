@@ -1,7 +1,7 @@
 ---
 import IconRefersh from "@icons/arrows-rotate.astro"
 ---
-<div class="contents settings">
+<div class="settings">
     <h3>Settings</h3>
     <table>
         <tr>
@@ -39,6 +39,8 @@ import IconRefersh from "@icons/arrows-rotate.astro"
             degree = document.querySelector("input#degree").value;
         RGP.Current = RGP.gen(ColorCount, degree);
 
+        document.dispatchEvent(new CustomEvent("NewGradients"))
+
         document.querySelector("main").style.backgroundImage = RGP.Current.LinearGradient;
         document.querySelector("div.intro > code").innerHTML = "background-image: " + RGP.Current.LinearGradient + ";";
     }
@@ -46,6 +48,10 @@ import IconRefersh from "@icons/arrows-rotate.astro"
 
 
 <style lang="scss">
+    div.settings {
+        width: 50%;
+        flex: .5;
+    }
     table {
         margin: 0 auto;
         tr td:first-child() {

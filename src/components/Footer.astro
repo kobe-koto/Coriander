@@ -4,30 +4,23 @@ import Preview from "@components/@footer/Preview.astro"
 import ColorUsed from "@components/@footer/ColorUsed.astro"
 ---
 
-<footer>
+<footer class="contents">
     <div class="main">
-        <ColorUsed />
         <Settings />
-        <Preview />
+        <ColorUsed />
     </div>
-    <!-- <div class="status">
-
-    </div> -->
+        <Preview />
 </footer>
 
 <style lang="scss">
     footer {
         width: 100%;
-        overflow: clip;
+        //overflow: clip;
+        width: 80%;
+        max-width: 1000px;
         .main {
-            // scroll-snap-type: x mandatory;
-            // scroll-snap-align: center;
-            width: 300%;
             display: flex;
-            justify-content: space-around;
-
-            transition: transform 0.5s ease;
-            transform: translateX(-33.33333333%);
+            justify-content: space-between;
         }
     }
 </style>
