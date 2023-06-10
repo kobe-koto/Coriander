@@ -13,30 +13,14 @@ import Footer from "@components/Footer.astro"
     <Footer />
 </main>
 
+
 <script lang="javascript">
-    window.RGP = {};
-    RGP.Current = {
-            ColorArray: ["#91e9c3", "#eaaa8e"],
-            LinearGradient: "linear-gradient(45deg, #91e9c3, #eaaa8e)"
-        };
-    RGP.gen = function (ColorCount, degree) {
-
-        let ColorArray = [];
-        for (let i = 0; i < ColorCount; i++) {
-            ColorArray[i] = "#" + Math.floor( Math.random() * 0xffffff ).toString(16);
-        }
-
-        return {
-            ColorArray: ColorArray,
-            LinearGradient: `linear-gradient(${degree || 0}deg, ${ColorArray.toFormattedString()})`
-        };
-    }
-
-    Array.prototype.toFormattedString = function () {
-        return this.toString().replace(/,/gi, "\, ")
-    }
+    document.addEventListener("RGP_NewGradients", function () {
+        let LinearGradient = RGP.Current.LinearGradient;
+        document.querySelector("main").style.backgroundImage = LinearGradient;
+        document.querySelector("div.intro > code").innerHTML = `background-image: ${LinearGradient};`;
+    })
 </script>
-
 
 <style lang="scss">
     main {

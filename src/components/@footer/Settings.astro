@@ -35,14 +35,10 @@ import IconRefersh from "@icons/arrows-rotate.astro"
 
 
     document.querySelector("div.settings > button").onclick = function () {
-        let ColorCount = document.querySelector("input#ColorCount").value,
-            degree = document.querySelector("input#degree").value;
-        RGP.Current = RGP.gen(ColorCount, degree);
-
-        document.dispatchEvent(new CustomEvent("NewGradients"))
-
-        document.querySelector("main").style.backgroundImage = RGP.Current.LinearGradient;
-        document.querySelector("div.intro > code").innerHTML = "background-image: " + RGP.Current.LinearGradient + ";";
+        RGP.run (
+            document.querySelector("input#ColorCount").value,
+            document.querySelector("input#degree").value
+        )
     }
 </script>
 
