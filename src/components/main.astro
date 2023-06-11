@@ -20,6 +20,17 @@ import Footer from "@components/Footer.astro"
         document.querySelector("main").style.backgroundImage = LinearGradient;
         document.querySelector("div.intro > code").innerHTML = `background-image: ${LinearGradient};`;
     })
+    document.addEventListener("RGP_NewDegree", function () {
+
+        //RGP.CurrentDegree
+
+        RGP.Current.LinearGradient = `linear-gradient(${RGP.CurrentDegree}deg, ${RGP.Current.ColorArray.toFormattedString()})`;
+
+        let LinearGradient = RGP.Current.LinearGradient;
+
+        document.querySelector("main").style.backgroundImage = LinearGradient;
+        document.querySelector("div.intro > code").innerHTML = `background-image: ${LinearGradient};`;
+    })
 </script>
 
 <style lang="scss">

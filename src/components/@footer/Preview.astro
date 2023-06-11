@@ -94,4 +94,14 @@
             Targets[i].style.backgroundImage = LinearGradient;
         }
     })
+
+    document.addEventListener("RGP_NewDegree", function () {
+        RGP.Current.LinearGradient = `linear-gradient(${RGP.CurrentDegree}deg, ${RGP.Current.ColorArray.toFormattedString()})`;
+
+        let LinearGradient = RGP.Current.LinearGradient,
+            Targets = [...document.querySelectorAll(".PreviewBG"), ...document.querySelectorAll(".PreviewBlock")];
+        for ( let i=0; i<Targets.length; i++ ) {
+            Targets[i].style.backgroundImage = LinearGradient;
+        }
+    })
 </script>

@@ -1,4 +1,5 @@
 window.RGP = {};
+RGP.CurrentDegree = 45;
 RGP.Current = {
         ColorArray: ["#91e9c3", "#eaaa8e"],
         LinearGradient: "linear-gradient(45deg, #91e9c3, #eaaa8e)"
