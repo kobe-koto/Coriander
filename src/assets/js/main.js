@@ -1,3 +1,7 @@
+Array.prototype.toFormattedString = function () {
+    return this.toString().replace(/,/gi, "\, ")
+}
+
 window.RGP = {};
 RGP.CurrentDegree = 45;
 RGP.Current = {
@@ -24,6 +28,4 @@ RGP.run = function (ColorCount, degree) {
     document.dispatchEvent(new CustomEvent("RGP_NewGradients"))
 }
 
-Array.prototype.toFormattedString = function () {
-    return this.toString().replace(/,/gi, "\, ")
-}
+if (window.localStorage && window.localStorage.getItem("RGPDatabase"))

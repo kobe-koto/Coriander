@@ -1,0 +1,127 @@
+---
+import IconCopy from "@icons/copy.astro"
+---
+
+<div class="ToastCon">
+
+    <div class="Origins">
+
+        <span class="Symbols">
+            <span data-icon-id="copy">
+                <IconCopy color="#f8f8ff" />
+            </span>
+        </span>
+
+        <div class="Toast">
+            <span class="symbol"></span>
+            <span class="msg">Copied.</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script lang="javascript">
+    window.Toast = {};
+    Toast.new = function (IconID, msg) {
+        let ToastID = `Toast-${Math.floor(1145141919810 * Math.random())}`,
+            ClonedToastOrigin = document.querySelector("div.ToastCon > div.Origins > div.Toast").cloneNode(true),
+            TargetIcon = document.querySelector(`div.ToastCon > div.Origins > span.Symbols > span[data-icon-id="${IconID}"]`).cloneNode(true);
+        ClonedToastOrigin.querySelector("span.symbol").appendChild(TargetIcon);
+        ClonedToastOrigin.querySelector("span.msg").innerText = msg;
+        ClonedToastOrigin.id = ToastID;
+        document.querySelector("div.ToastCon").appendChild(ClonedToastOrigin)
+        console.log(
+            "A toast nofication just dropped. \n" +
+            `ID: ${ToastID}; IconID: ${IconID}; msg: ${msg}`
+            )
+        setTimeout(function () {
+            document.getElementById(ToastID).remove();
+            console.log(ToastID + " has been removed.")
+        }, 2000)
+        return;
+    }
+</script>
+
+
+
+
+<style lang="scss">
+
+    .Origins {
+        display: none;
+    }
+
+    .ToastCon {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        z-index: 1145;
+        pointer-events: none;
+        padding-top: 12px;
+    }
+
+    div.Toast {
+        margin: 8px auto;
+        width: fit-content;
+        padding: 10px 14px;
+
+        display: flex;
+        align-items: center;
+
+        box-sizing: border-box;
+        overflow: hidden;
+
+        transition: 
+            background-color 0.25s ease,
+            border-color 0.25s ease,
+            transform 0.3s ease;
+
+        background-color: #232323;
+        border-radius: 12px;
+        border-width: 1px;
+        border-color: #424242;
+        border-style: solid;
+
+        animation: InAndEnd 2s ease;
+        animation-fill-mode: forwards;
+
+        @keyframes InAndEnd {
+            0% {
+                transform: scale(0.75) translateY(-20px);
+                opacity: 0;
+            }
+            20% {
+                transform: scale(1) translateY(0px);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(1) translateY(0px);
+                opacity: 1;
+            }
+            99% {
+                transform: scale(0.75) translateY(-20px);
+                opacity: 0;
+
+                margin: 8px auto;
+                padding: 10px 14px;
+                height: auto;
+            }
+            100% {
+                transform: scale(0.75) translateY(-20px);
+                opacity: 0;
+
+                margin: 0 auto;
+                padding: 0;
+                height: 0;
+            }
+        }
+
+        .symbol {
+            margin-right: 8px;
+        }
+
+    }
+</style>

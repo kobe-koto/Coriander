@@ -1,5 +1,7 @@
 ---
 import Footer from "@components/Footer.astro"
+
+import IconCopy from "@icons/copy.astro"
 ---
 
 
@@ -9,12 +11,34 @@ import Footer from "@components/Footer.astro"
         <h2>Coriander</h2>
         <h3>Yet another Random Gradients Picker</h3>
         <code>background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);</code>
+        <br>
+        <button data-role="copy"><IconCopy />&nbsp;Copy</button>&nbsp;&nbsp;<button data-role="add"><icon>🌟</icon>&nbsp;Add</button>
     </div>
     <Footer />
 </main>
 
 
 <script lang="javascript">
+    let CopyBtn = document.querySelector("div.intro > button[data-role=\"copy\"]"),
+        AddBtn = document.querySelector("div.intro > button[data-role=\"add\"]");
+
+    if (!navigator.clipboard) {
+        CopyBtn.remove();
+    } else {
+        CopyBtn.addEventListener("click", function () {
+            navigator.clipboard.writeText(document.querySelector("div.intro > code").innerText)
+                .then(function () {
+                    Toast.new ("copy", "Succ to Copy CSS Code")
+                })
+                .catch(function (err) {
+                alert('Error in copying text: ', err);
+                });
+        })
+    }
+
+    AddBtn.remove()
+
+
     document.addEventListener("RGP_NewGradients", function () {
         let LinearGradient = RGP.Current.LinearGradient;
         document.querySelector("main").style.backgroundImage = LinearGradient;
