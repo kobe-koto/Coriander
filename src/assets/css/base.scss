@@ -29,29 +29,8 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-
-        // animation: ScaleInFadeIn ease .35s;
-
-        // @keyframes ScaleInFadeIn {
-        //     0% {
-        //         opacity: 0;
-        //         transform: scale(1.15);
-        //     }
-        //     100% {
-        //         opacity: 1;
-        //         transform: scale(1);
-        //     }
-        // }
     }
 
-    // &.post {
-    //     align-items: flex-start;
-    //     main {
-    //         min-height: 100vh;
-    //         display: block;
-    //         padding-bottom: 16px;
-    //     }
-    // }
 }
 
 // link
@@ -111,8 +90,8 @@ input {
 
 svg {
     transition: fill .3s ease;
-    vertical-align: sub;
-    fill: #f1f1ff !important;
+    fill: #f1f1ff;
+    vertical-align: -.125rem;
 }
 
 code, .code {
@@ -120,7 +99,7 @@ code, .code {
     box-sizing: border-box; 
     background-color: rgba(40, 41, 42, 0.65); 
     color: #f8f8ff;
-    margin: 10px 0; 
+    margin: 10px 12px; 
     padding: 12px;
 
     text-align: left; 

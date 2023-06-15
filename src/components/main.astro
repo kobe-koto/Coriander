@@ -22,22 +22,24 @@ import IconCopy from "@icons/copy.astro"
     let CopyBtn = document.querySelector("div.intro > button[data-role=\"copy\"]"),
         AddBtn = document.querySelector("div.intro > button[data-role=\"add\"]");
 
-    if (!navigator.clipboard) {
-        CopyBtn.remove();
-    } else {
-        CopyBtn.addEventListener("click", function () {
-            navigator.clipboard.writeText(document.querySelector("div.intro > code").innerText)
-                .then(function () {
-                    Toast.new ("copy", "Succ to Copy CSS Code")
-                })
-                .catch(function (err) {
-                alert('Error in copying text: ', err);
-                });
-        })
-    }
+    CopyBtn.addEventListener("click", function () {
+        if (!navigator.clipboard) {
+            Toast.new("check", "The navigator.clipboard API couldn't be found")
+            return;
+        }
+        navigator.clipboard.writeText(document.querySelector("div.intro > code").innerText)
+            .then(function () {
+                Toast.new("check", "Succ to Copy CSS Code")
+            })
+            .catch(function (err) {
+                Toast.new("check", "Error in copying text: ", err)
+            });
+    })
 
-    AddBtn.remove()
-
+    AddBtn.addEventListener("click", function () {
+        RGP.Push2DB({Degree: RGP.Degree, ColorArray: RGP.Current.ColorArray})
+        Toast.new("check", "Succ to Add to favo")
+    })
 
     document.addEventListener("RGP_NewGradients", function () {
         let LinearGradient = RGP.Current.LinearGradient;

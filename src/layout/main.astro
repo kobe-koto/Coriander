@@ -1,0 +1,25 @@
+---
+interface Props {
+	role?: string
+}
+
+import "@assets/css/base.scss"
+const { role } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="Yet another Random Gradients Picker" />
+		<meta name="author" content="kobe koto" />
+		<link rel="sitemap" href="/sitemap-index.xml">
+		<title>Random Gradients Picker - koto's Persents</title>
+	</head>
+	<body>
+        <slot />
+	</body>
+</html>
+
+{ role === "contents" && <style>body {display: block; padding: 75px 0;}</style> }

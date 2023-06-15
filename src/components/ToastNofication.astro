@@ -1,5 +1,6 @@
 ---
 import IconCopy from "@icons/copy.astro"
+import IconCheck from "@icons/check.astro"
 ---
 
 <div class="ToastCon">
@@ -10,11 +11,14 @@ import IconCopy from "@icons/copy.astro"
             <span data-icon-id="copy">
                 <IconCopy color="#f8f8ff" />
             </span>
+            <span data-icon-id="check">
+                <IconCheck color="#f8f8ff" />
+            </span>
         </span>
 
         <div class="Toast">
             <span class="symbol"></span>
-            <span class="msg">Copied.</span>
+            <span class="msg"></span>
         </div>
 
     </div>
@@ -26,19 +30,19 @@ import IconCopy from "@icons/copy.astro"
     Toast.new = function (IconID, msg) {
         let ToastID = `Toast-${Math.floor(1145141919810 * Math.random())}`,
             ClonedToastOrigin = document.querySelector("div.ToastCon > div.Origins > div.Toast").cloneNode(true),
-            TargetIcon = document.querySelector(`div.ToastCon > div.Origins > span.Symbols > span[data-icon-id="${IconID}"]`).cloneNode(true);
+            TargetIcon = document.querySelector(`div.ToastCon > div.Origins > span.Symbols > span[data-icon-id="${IconID}"] > svg`).cloneNode(true);
         ClonedToastOrigin.querySelector("span.symbol").appendChild(TargetIcon);
         ClonedToastOrigin.querySelector("span.msg").innerText = msg;
         ClonedToastOrigin.id = ToastID;
         document.querySelector("div.ToastCon").appendChild(ClonedToastOrigin)
-        console.log(
-            "A toast nofication just dropped. \n" +
-            `ID: ${ToastID}; IconID: ${IconID}; msg: ${msg}`
-            )
+        // console.log(
+        //     "A toast nofication just dropped. \n" +
+        //     `ID: ${ToastID}; IconID: ${IconID}; msg: ${msg}`
+        //     )
         setTimeout(function () {
             document.getElementById(ToastID).remove();
-            console.log(ToastID + " has been removed.")
-        }, 2000)
+            // console.log(ToastID + " has been removed.")
+        }, 2233)
         return;
     }
 </script>

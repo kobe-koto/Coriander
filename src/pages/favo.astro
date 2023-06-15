@@ -1,0 +1,49 @@
+---
+import Layout from "@layouts/main.astro"
+//'{"main":[{"Date":"2023/6/15 17:39:44 GMT+0800 (中国标准时间)","Obj":{"ColorArray":["#bc280b","#55aa5"]}},{"Date":"2023/6/15 17:39:44 GMT+0800 (中国标准时间)","Obj":{"ColorArray":["#bc280b","#55aa5"]}},{"Date":"2023/6/15 17:41:50 GMT+0800 (中国标准时间)","Obj":{"ColorArray":["#a6fbd2","#84d8a0"]}}]}'
+---
+
+<Layout role="contents">
+    <div class="Gradient">
+        <div class="Preview"></div>
+        <div class="Desc">
+            <p class="Code">linear-gradient(45deg, #91e9c3, #eaaa8e)</p>
+            <p class="Date">2077/07/07</p>
+        </div>
+    </div>
+</Layout>
+
+<style lang="scss">
+    div.Gradient {
+        width: 80%;
+        max-width: 850px;
+        margin: 0 auto;
+        background-color: #303030;
+
+        border-radius: 12px;
+        border-width: 1px;
+        border-color: #424242;
+        border-style: solid;
+
+        overflow: hidden;
+
+        .Preview {
+            background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
+            height: 175px;
+            width: 100%;
+        }
+        .Desc {
+            padding: 16px 18px;
+            p.Code {
+                word-break: break-all;
+            }
+            p.Date {
+                font-size: smaller;
+                opacity: 0.65;
+            }
+        }
+    }
+</style>
+<script lang="javascript">
+
+</script>

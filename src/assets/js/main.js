@@ -28,4 +28,17 @@ RGP.run = function (ColorCount, degree) {
     document.dispatchEvent(new CustomEvent("RGP_NewGradients"))
 }
 
-if (window.localStorage && window.localStorage.getItem("RGPDatabase"))
+if (window.localStorage && window.localStorage.getItem("RGPDatabase") && !location.hostname.match(/^(localhost|127.0.0.1|0.0.0.0)$/i)) {
+    RGP.DB = JSON.parse(window.localStorage.getItem("RGPDatabase"));
+} else if (window.localStorage) {
+    RGP.DB = { main: [] }
+}
+
+RGP.Push2DB = function (Obj) {
+    let DateNow = new Date()
+    RGP.DB.main[RGP.DB.main.length] = {
+        Date: DateNow.toLocaleDateString() + " " + DateNow.toTimeString(),
+        Obj: Obj
+    }
+    window.localStorage.setItem("RGPDatabase", JSON.stringify(RGP.DB))
+}
