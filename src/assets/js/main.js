@@ -12,7 +12,7 @@ RGP.gen = function (ColorCount, degree) {
 
     let ColorArray = [];
     for (let i = 0; i < ColorCount; i++) {
-        ColorArray[i] = "#" + Math.floor( Math.random() * 0xffffff ).toString(16);
+        ColorArray[i] = "#" + Math.floor( Math.random() * 0xffffff ).toString(16).padStart(6, "0");
     }
 
     return {
@@ -28,7 +28,7 @@ RGP.run = function (ColorCount, degree) {
     document.dispatchEvent(new CustomEvent("RGP_NewGradients"))
 }
 
-if (window.localStorage && window.localStorage.getItem("RGPDatabase") && !location.hostname.match(/^(localhost|127.0.0.1|0.0.0.0)$/i)) {
+if (window.localStorage && window.localStorage.getItem("RGPDatabase")) {
     RGP.DB = JSON.parse(window.localStorage.getItem("RGPDatabase"));
 } else if (window.localStorage) {
     RGP.DB = { main: [] }

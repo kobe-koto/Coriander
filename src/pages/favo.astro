@@ -1,19 +1,58 @@
 ---
-import Layout from "@layouts/main.astro"
-//'{"main":[{"Date":"2023/6/15 17:39:44 GMT+0800 (中国标准时间)","Obj":{"ColorArray":["#bc280b","#55aa5"]}},{"Date":"2023/6/15 17:39:44 GMT+0800 (中国标准时间)","Obj":{"ColorArray":["#bc280b","#55aa5"]}},{"Date":"2023/6/15 17:41:50 GMT+0800 (中国标准时间)","Obj":{"ColorArray":["#a6fbd2","#84d8a0"]}}]}'
+import Main from "@layouts/main.astro"
 ---
 
-<Layout role="contents">
-    <div class="Gradient">
-        <div class="Preview"></div>
-        <div class="Desc">
-            <p class="Code">linear-gradient(45deg, #91e9c3, #eaaa8e)</p>
-            <p class="Date">2077/07/07</p>
+<Main role="contents">
+    <p class="Title">Favorites</p>
+
+    <div class="GradientCon Prototype">
+        <div class="Gradient">
+            <div class="Preview"></div>
+            <div class="Desc">
+                <p class="Code">linear-gradient(45deg, #91e9c3, #eaaa8e)</p>
+                <p class="Date">2077/07/07</p>
+            </div>
         </div>
     </div>
-</Layout>
+</Main>
+
+<script lang="javascript">
+    window.RGP = {};
+    if (window.localStorage && window.localStorage.getItem("RGPDatabase")) {
+        RGP.DB = JSON.parse(window.localStorage.getItem("RGPDatabase"));
+    } else {
+        RGP.DB = { main: [] };
+    }
+
+    let FavoArray = RGP.DB.main;
+    let GradientPrototype = document.querySelector("div.GradientCon.Prototype").cloneNode(true);
+    GradientPrototype.classList.remove("Prototype");
+
+    for ( let i=FavoArray.length-1; i>=0; i--) {
+        let TmpGradientPrototype = GradientPrototype.cloneNode(true);
+        let LinearGradient = `linear-gradient(${FavoArray[i].Obj.Degree}deg, ${FavoArray[i].Obj.ColorArray.toString().replace(/,/gi, "\, ")})`;
+        TmpGradientPrototype.querySelector("div.Gradient > div.Preview").style.backgroundImage = LinearGradient;
+        TmpGradientPrototype.querySelector("div.Desc > p.Code").innerText = LinearGradient;
+        TmpGradientPrototype.querySelector("div.Desc > p.Date").innerText = FavoArray[i].Date;
+        document.body.append(TmpGradientPrototype)
+    }
+    
+</script>
 
 <style lang="scss">
+    p.Title {
+        width: 80%;
+        margin: 30px auto;
+        font-size: x-large;
+    }
+
+    div.GradientCon {
+        margin-bottom: 24px;
+        &.Prototype {
+            display: none;
+        }
+    }
+
     div.Gradient {
         width: 80%;
         max-width: 850px;
@@ -28,7 +67,7 @@ import Layout from "@layouts/main.astro"
         overflow: hidden;
 
         .Preview {
-            background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
+            //background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
             height: 175px;
             width: 100%;
         }
@@ -44,6 +83,3 @@ import Layout from "@layouts/main.astro"
         }
     }
 </style>
-<script lang="javascript">
-
-</script>

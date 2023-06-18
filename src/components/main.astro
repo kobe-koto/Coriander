@@ -1,7 +1,7 @@
 ---
 import Footer from "@components/Footer.astro"
 
-import IconCopy from "@icons/copy.astro"
+import { Icon } from "astro-icon";
 ---
 
 
@@ -12,7 +12,8 @@ import IconCopy from "@icons/copy.astro"
         <h3>Yet another Random Gradients Picker</h3>
         <code>background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);</code>
         <br>
-        <button data-role="copy"><IconCopy />&nbsp;Copy</button>&nbsp;&nbsp;<button data-role="add"><icon>🌟</icon>&nbsp;Add</button>
+        <button data-role="copy"><Icon name="heroicons:document-duplicate" />&nbsp;Copy</button>&nbsp;&nbsp;
+        <button data-role="add"><Icon name="heroicons:star" />&nbsp;Add</button>
     </div>
     <Footer />
 </main>
@@ -24,7 +25,7 @@ import IconCopy from "@icons/copy.astro"
 
     CopyBtn.addEventListener("click", function () {
         if (!navigator.clipboard) {
-            Toast.new("check", "The navigator.clipboard API couldn't be found")
+            Toast.new("warn", "The navigator.clipboard API couldn't be found.")
             return;
         }
         navigator.clipboard.writeText(document.querySelector("div.intro > code").innerText)
@@ -32,12 +33,12 @@ import IconCopy from "@icons/copy.astro"
                 Toast.new("check", "Succ to Copy CSS Code")
             })
             .catch(function (err) {
-                Toast.new("check", "Error in copying text: ", err)
+                Toast.new("error", "Error in copying text: ", err)
             });
     })
 
     AddBtn.addEventListener("click", function () {
-        RGP.Push2DB({Degree: RGP.Degree, ColorArray: RGP.Current.ColorArray})
+        RGP.Push2DB({Degree: RGP.CurrentDegree, ColorArray: RGP.Current.ColorArray})
         Toast.new("check", "Succ to Add to favo")
     })
 

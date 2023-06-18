@@ -56,8 +56,6 @@ a:link, a:visited {
 }
 
 button {
-    display: inline-flex;
-    align-items: center;
     border: none;
     font-size: medium;
 
@@ -88,10 +86,13 @@ input {
     color: #f1f1ff;
 }
 
-svg {
+[astro-icon] {
+    height: 20px;
+    width: 20px;
+
     transition: fill .3s ease;
     fill: #f1f1ff;
-    vertical-align: -.125rem;
+    vertical-align: -.25rem;
 }
 
 code, .code {

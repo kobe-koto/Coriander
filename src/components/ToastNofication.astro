@@ -1,6 +1,5 @@
 ---
-import IconCopy from "@icons/copy.astro"
-import IconCheck from "@icons/check.astro"
+import { Icon } from "astro-icon";
 ---
 
 <div class="ToastCon">
@@ -8,11 +7,14 @@ import IconCheck from "@icons/check.astro"
     <div class="Origins">
 
         <span class="Symbols">
-            <span data-icon-id="copy">
-                <IconCopy color="#f8f8ff" />
-            </span>
             <span data-icon-id="check">
-                <IconCheck color="#f8f8ff" />
+                <Icon name="heroicons:check-circle" />
+            </span>
+            <span data-icon-id="error">
+                <Icon name="heroicons:exclamation-circle" />
+            </span>
+            <span data-icon-id="warn">
+                <Icon name="heroicons:exclamation-triangle" />
             </span>
         </span>
 
@@ -35,13 +37,8 @@ import IconCheck from "@icons/check.astro"
         ClonedToastOrigin.querySelector("span.msg").innerText = msg;
         ClonedToastOrigin.id = ToastID;
         document.querySelector("div.ToastCon").appendChild(ClonedToastOrigin)
-        // console.log(
-        //     "A toast nofication just dropped. \n" +
-        //     `ID: ${ToastID}; IconID: ${IconID}; msg: ${msg}`
-        //     )
         setTimeout(function () {
             document.getElementById(ToastID).remove();
-            // console.log(ToastID + " has been removed.")
         }, 2233)
         return;
     }
