@@ -22,6 +22,9 @@ import { Icon } from "astro-icon"
             <button class="circle" data-role="copy" onclick="RGP.copy(this);">
                 <Icon name="heroicons:document-duplicate" />
             </button>
+            <button class="circle" data-role="delete" onclick="RGP.remove(this);">
+                <Icon name="heroicons:x-mark" />
+            </button>
         </div>
     </div>
 </Main>
@@ -53,6 +56,18 @@ import { Icon } from "astro-icon"
             .catch(function (err) {
                 Toast.new("error", "Error in copying text.")
             });
+    }
+
+    /**
+     * @param Handler {Element}
+     */
+    RGP.remove = function (Handler) {
+        let TargetCon = Handler.parentElement.parentElement;
+        let TargetID = parseInt(TargetCon.id.replace(/^Gradient-/, "")) - 1;
+        RGP.DB.main.splice(TargetID, 1)
+        window.localStorage.setItem("RGPDatabase", JSON.stringify(RGP.DB))
+        TargetCon.remove()
+        Toast.new("check", "Succ to delete.")
     }
 
     if (FavoArray.length === 0) {
