@@ -1,8 +1,13 @@
 ---
 import Main from "@layouts/main.astro"
+import ToastNofication from "@components/ToastNofication.astro";
+import { Icon } from "astro-icon"
+
+//'{"main":[{"Date":"2023/6/27 15:45:26 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#733006","#a3ee81"]}},{"Date":"2023/6/27 15:45:27 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#085864","#40a0bf"]}},{"Date":"2023/6/27 15:45:28 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#648018","#6c7dca"]}},{"Date":"2023/6/27 15:45:33 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#c9dbab","#5b1123"]}},{"Date":"2023/6/27 15:45:34 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#0ee383","#1c3957"]}},{"Date":"2023/6/27 15:45:35 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#90dec1","#102f41"]}},{"Date":"2023/6/27 15:45:36 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#cb3a23","#b211e5"]}},{"Date":"2023/6/27 15:45:37 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#842256","#6c5f85"]}},{"Date":"2023/6/27 15:45:43 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#36452e","#2d25fc","#1b7ec3","#57fdfe","#359b66","#f4df8f"]}},{"Date":"2023/6/27 15:45:48 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#ee6f82","#7e121e","#a17f05","#95b5f0"]}},{"Date":"2023/6/27 15:45:49 GMT+0800 (中國標準時間)","Obj":{"Degree":45,"ColorArray":["#cd8940","#b945ad","#3aaf64","#c18cf9"]}}]}'
 ---
 
 <Main role="contents">
+	<ToastNofication />
     <p class="Title">Favorites</p>
 
     <div class="GradientCon Prototype">
@@ -12,6 +17,11 @@ import Main from "@layouts/main.astro"
                 <p class="Code">linear-gradient(45deg, #91e9c3, #eaaa8e)</p>
                 <p class="Date">2077/07/07</p>
             </div>
+        </div>
+        <div class="buttons">
+            <button class="circle" data-role="copy" onclick="RGP.copy(this);">
+                <Icon name="heroicons:document-duplicate" />
+            </button>
         </div>
     </div>
 </Main>
@@ -28,14 +38,47 @@ import Main from "@layouts/main.astro"
     let GradientPrototype = document.querySelector("div.GradientCon.Prototype").cloneNode(true);
     GradientPrototype.classList.remove("Prototype");
 
+    /**
+     * @param Handler {Element}
+     */
+    RGP.copy = function (Handler) {
+        if (!navigator.clipboard) {
+            Toast.new("warn", "The navigator.clipboard API couldn't be found.")
+            return;
+        }
+        navigator.clipboard.writeText(`background-image: ${Handler.parentElement.parentElement.querySelector("p.Code").innerText};`)
+            .then(function () {
+                Toast.new("check", "Succ to Copy CSS Code")
+            })
+            .catch(function (err) {
+                Toast.new("error", "Error in copying text.")
+            });
+    }
+
+    if (FavoArray.length === 0) {
+        let Warn = document.createElement("h3");
+        Warn.style.textAlign = "center";
+        Warn.innerText = "It's seems like you haven't add anything to your favorites yet."
+        document.body.append(Warn)
+
+        let ReturnTip = document.createElement("h4");
+        ReturnTip.style.textAlign = "center";
+        ReturnTip.innerHTML = "<a href=\"/\">Return to Coriander Homepage</a>"
+        document.body.append(ReturnTip)
+    }
+
     for ( let i=FavoArray.length-1; i>=0; i--) {
         let TmpGradientPrototype = GradientPrototype.cloneNode(true);
         let LinearGradient = `linear-gradient(${FavoArray[i].Obj.Degree}deg, ${FavoArray[i].Obj.ColorArray.toString().replace(/,/gi, "\, ")})`;
         TmpGradientPrototype.querySelector("div.Gradient > div.Preview").style.backgroundImage = LinearGradient;
         TmpGradientPrototype.querySelector("div.Desc > p.Code").innerText = LinearGradient;
         TmpGradientPrototype.querySelector("div.Desc > p.Date").innerText = FavoArray[i].Date;
+        TmpGradientPrototype.id = `Gradient-${i}`;
         document.body.append(TmpGradientPrototype)
     }
+
+    //button class="circle" data-role="copy"
+    //document.querySelectorAll("button[data-role=\"copy\"]")
     
 </script>
 
@@ -47,17 +90,27 @@ import Main from "@layouts/main.astro"
     }
 
     div.GradientCon {
+        display: flex;
+        //margin: 0 auto;
+        justify-content: center;
         margin-bottom: 24px;
         &.Prototype {
             display: none;
         }
     }
 
+    div.buttons {
+        writing-mode: vertical-lr;
+        margin: auto 10px;
+        display: flex;
+        gap: 8px;
+    }
+
     div.Gradient {
         width: 80%;
         max-width: 850px;
-        margin: 0 auto;
         background-color: #303030;
+        margin-left: 40px;
 
         border-radius: 12px;
         border-width: 1px;
