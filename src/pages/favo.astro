@@ -25,6 +25,10 @@ import { Icon } from "astro-icon"
             </button>
         </div>
     </div>
+
+    <div class="FavoriteCon">
+
+    </div>
 </Main>
 
 <script lang="javascript">
@@ -38,6 +42,32 @@ import { Icon } from "astro-icon"
     let FavoArray = RGP.DB.main;
     let GradientPrototype = document.querySelector("div.GradientCon.Prototype").cloneNode(true);
     GradientPrototype.classList.remove("Prototype");
+
+    RGP.FavoInit = function () {
+        if (FavoArray.length === 0) {
+            let Warn = document.createElement("h3");
+            Warn.style.textAlign = "center";
+            Warn.innerText = "It's seems like you haven't add anything to your favorites yet.";
+            document.querySelector("div.FavoriteCon").append(Warn);
+
+            let ReturnTip = document.createElement("h4");
+            ReturnTip.style.textAlign = "center";
+            ReturnTip.innerHTML = "<a href=\"/\">Return to Coriander Homepage</a>";
+            document.querySelector("div.FavoriteCon").append(ReturnTip);
+
+            return;
+        }
+
+        for ( let i=FavoArray.length-1; i>=0; i--) {
+            let TmpGradientPrototype = GradientPrototype.cloneNode(true);
+            let LinearGradient = `linear-gradient(${FavoArray[i].Obj.Degree}deg, ${FavoArray[i].Obj.ColorArray.toString().replace(/,/gi, "\, ")})`;
+            TmpGradientPrototype.querySelector("div.Gradient > div.Preview").style.backgroundImage = LinearGradient;
+            TmpGradientPrototype.querySelector("div.Desc > p.Code").innerText = LinearGradient;
+            TmpGradientPrototype.querySelector("div.Desc > p.Date").innerText = FavoArray[i].Date;
+            TmpGradientPrototype.id = `Gradient-${i}`;
+            document.querySelector("div.FavoriteCon").append(TmpGradientPrototype);
+        }
+    }
 
     /**
      * @param Handler {Element}
@@ -61,37 +91,26 @@ import { Icon } from "astro-icon"
      */
     RGP.remove = function (Handler) {
         let TargetCon = Handler.parentElement.parentElement;
-        let TargetID = parseInt(TargetCon.id.replace(/^Gradient-/, "")) - 1;
+
+        // get id.
+        let TargetID = parseInt(TargetCon.id.replace(/^Gradient-/, ""));
+
+        // remove it from database
         RGP.DB.main.splice(TargetID, 1)
+
+        // save database
         window.localStorage.setItem("RGPDatabase", JSON.stringify(RGP.DB))
-        TargetCon.remove()
+
+        // do re-init to refresh id for other favo item
+        document.querySelector("div.FavoriteCon").innerHTML = "";
+        RGP.FavoInit()
+
+        // send a "Succ" toast msg.
         Toast.new("check", "Succ to delete.")
     }
 
-    if (FavoArray.length === 0) {
-        let Warn = document.createElement("h3");
-        Warn.style.textAlign = "center";
-        Warn.innerText = "It's seems like you haven't add anything to your favorites yet."
-        document.body.append(Warn)
-
-        let ReturnTip = document.createElement("h4");
-        ReturnTip.style.textAlign = "center";
-        ReturnTip.innerHTML = "<a href=\"/\">Return to Coriander Homepage</a>"
-        document.body.append(ReturnTip)
-    }
-
-    for ( let i=FavoArray.length-1; i>=0; i--) {
-        let TmpGradientPrototype = GradientPrototype.cloneNode(true);
-        let LinearGradient = `linear-gradient(${FavoArray[i].Obj.Degree}deg, ${FavoArray[i].Obj.ColorArray.toString().replace(/,/gi, "\, ")})`;
-        TmpGradientPrototype.querySelector("div.Gradient > div.Preview").style.backgroundImage = LinearGradient;
-        TmpGradientPrototype.querySelector("div.Desc > p.Code").innerText = LinearGradient;
-        TmpGradientPrototype.querySelector("div.Desc > p.Date").innerText = FavoArray[i].Date;
-        TmpGradientPrototype.id = `Gradient-${i}`;
-        document.body.append(TmpGradientPrototype)
-    }
-
-    //button class="circle" data-role="copy"
-    //document.querySelectorAll("button[data-role=\"copy\"]")
+    // init favo list.
+    RGP.FavoInit()
     
 </script>
 
