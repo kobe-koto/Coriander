@@ -1,0 +1,34 @@
+---
+---
+<div class="settings">
+    <h1>Settings</h1>
+    <div>
+        Degree: 
+        <input id="degree" type="number" placeholder="Degree" />
+    </div>
+    <div>
+        Color Count: 
+        <input id="ColorCount" type="number" placeholder="Color Count" />
+    </div>
+    <br/>
+</div>
+
+<script lang="javascript">
+    document.querySelector("input#ColorCount").value = "2";
+    document.querySelector("input#degree").value = "45";
+
+    document.querySelector("#degree").addEventListener("keyup", function () {
+        if (this.value > 360 || this.value < -360) {
+            this.value = this.value > 360 ? 360 : -360;
+        }
+        Coriander.CurrentDegree = parseInt(this.value);
+        document.dispatchEvent(new CustomEvent("Coriander_NewDegree"))
+    })
+</script>
+
+
+<style lang="scss">
+    .settings > div {
+        margin-bottom: 16px;
+    }
+</style>

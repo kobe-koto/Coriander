@@ -1,0 +1,53 @@
+---
+---
+<header>
+    <span class="logo">
+        <a href="/">Coriander</a>
+    </span>
+    <span class="links">
+        <span>
+            <a href="/favo">Favorites</a>
+        </span>
+        <span>
+            <a href="https://github.com/kobe-koto/Coriander">Open Source</a>
+        </span>
+    </span>
+</header>
+
+<style lang="scss">
+    header {
+        width: 100%;
+        box-sizing: border-box;
+        margin: auto;
+        // max-width: 1000px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 114;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 10%;
+        backdrop-filter: blur(16px);
+        background-color: rgba(0,0,0,0.75);
+
+        @media screen and (max-width: 400px) {
+            text-align: center;
+            display: block;
+            > span {
+                display: block;
+                margin: auto;
+            }
+        }
+
+        .logo {
+            font-size: larger;
+        }
+        .links {
+            > span:not(:first-child)::before {
+                content: "/";
+                margin: 0 10px;
+            }
+        }
+    }
+</style>

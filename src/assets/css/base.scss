@@ -13,23 +13,14 @@ html {
 
 body {
     @extend html;
-
-    display: flex;
-    align-items: center;
+    
+    display: block; padding: 75px 0;
     transition: all .45s ease;
+    padding-top: 100px;
 
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     color: #f8f8ff;
     background-color: #1f1f1f;/* #28292a */
-
-    main {
-        margin: 0 auto;
-        box-sizing: border-box;
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
 }
 
@@ -101,16 +92,15 @@ input {
     vertical-align: -.25rem;
 }
 
-code, .code {
+code, .as-code {
     display: inline-block; 
     box-sizing: border-box; 
     background-color: rgba(40, 41, 42, 0.65); 
     color: #f8f8ff;
-    margin: 10px 12px; 
     padding: 12px;
 
     text-align: left; 
-    border-radius: 5px; 
+    border-radius: 6px; 
     word-break: break-all;
     font-family: 'JetBrains Mono', sans-serif;
     font-size: smaller;

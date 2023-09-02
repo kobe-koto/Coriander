@@ -8,31 +8,32 @@
         <div class="PreviewBG">
             <span class="PreviewBlock__White"></span>
         </div>
-        As background (White block)
+        <p>As background (with a white block)</p>
     </div>
     <div>
         <div class="PreviewBG">
             <span class="PreviewBlock__Black"></span>
         </div>
-        As background (Black block)
+        <p>As background (with a black block)</p>
     </div>
     <div>
         <div class="PreviewBG__White">
             <span class="PreviewBlock"></span>
         </div>
-        As block (White Background)
+        <p>As block (with a white background)</p>
     </div>
     <div>
         <div class="PreviewBG__Black">
             <span class="PreviewBlock"></span>
         </div>
-        As block (Black Background)
+        <p>As block (with a black background)</p>
     </div>
 </div>
 
 <style lang="scss">
     div.Previews {
         > div {
+            text-align: center;
             display: inline-block;
             width: 45%;
             margin: 0 1.5%;
@@ -45,7 +46,7 @@
                 border-width: 1px;
                 border-color: #808080;
 
-                background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
+                background-image: linear-gradient(45deg, #164eac, #2f6d2e);
 
                 &__White {
                     @extend .PreviewBG;
@@ -66,7 +67,7 @@
                     max-width: 320px;
                     box-shadow: 1px 1px 10px 0px #4a4a4a;
 
-                    background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
+                    background-image: linear-gradient(45deg, #164eac, #2f6d2e);
 
                     &__White {
                         @extend .PreviewBlock;
@@ -87,18 +88,18 @@
 
 
 <script lang="javascript">
-    document.addEventListener("RGP_NewGradients", function () {
-        let LinearGradient = RGP.Current.LinearGradient,
+    document.addEventListener("Coriander_NewGradients", function () {
+        let LinearGradient = Coriander.Current.LinearGradient,
             Targets = [...document.querySelectorAll(".PreviewBG"), ...document.querySelectorAll(".PreviewBlock")];
         for ( let i=0; i<Targets.length; i++ ) {
             Targets[i].style.backgroundImage = LinearGradient;
         }
     })
 
-    document.addEventListener("RGP_NewDegree", function () {
-        RGP.Current.LinearGradient = `linear-gradient(${RGP.CurrentDegree}deg, ${RGP.Current.ColorArray.toFormattedString()})`;
+    document.addEventListener("Coriander_NewDegree", function () {
+        Coriander.Current.LinearGradient = `linear-gradient(${Coriander.CurrentDegree}deg, ${Coriander.Current.ColorArray.toFormattedString()})`;
 
-        let LinearGradient = RGP.Current.LinearGradient,
+        let LinearGradient = Coriander.Current.LinearGradient,
             Targets = [...document.querySelectorAll(".PreviewBG"), ...document.querySelectorAll(".PreviewBlock")];
         for ( let i=0; i<Targets.length; i++ ) {
             Targets[i].style.backgroundImage = LinearGradient;

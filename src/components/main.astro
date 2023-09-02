@@ -1,34 +1,77 @@
 ---
-import Footer from "@components/Footer.astro"
-
 import { Icon } from "astro-icon";
+
+
+import Settings from "@components/settings.astro"
+import ColorUsed from "@components/ColorUsed.astro";
+import Preview from "@components/preview.astro";
 ---
-
-
-<main>
-    <div data-role="placeholder"></div>
-    <div class="intro">
-        <h2>Coriander</h2>
-        <h3>Yet another Random Gradients Picker</h3>
-        <code>background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);</code>
-        <br>
-        <button data-role="copy"><Icon name="heroicons:document-duplicate" />&nbsp;Copy</button>&nbsp;&nbsp;
-        <button data-role="add"><Icon name="heroicons:star" />&nbsp;Add</button>
+<div class="intro">
+    <div class="main">
+        <h1>Coriander</h1>
+        <h3>Yet another *random* gradients picker.</h3>
+        <div class="code">
+            <code>background-image: linear-gradient(45deg, #164eac, #2f6d2e);</code>
+            <button data-role="copy"><Icon name="heroicons:document-duplicate" /></button>
+            <button data-role="add"><Icon name="heroicons:star" /></button>
+        </div>
+        <button data-role="gen"><Icon name="heroicons:arrow-path" />&nbsp;Gen</button>
     </div>
-    <Footer />
-</main>
+    <Settings />
+    <ColorUsed />
+    <Preview />
+    
+</div>
+
+<style lang="scss">
+    div.intro {
+        width: 85%;
+        max-width: 1200px;
+        margin: auto;
+
+        .main {
+            background-image: linear-gradient(45deg, #164eac, #2f6d2e);
+            width: 100%;
+            border-radius: 12px;
+            padding: 75px 0;
+            text-align: center;
+
+            border-radius: 12px;
+            border-width: 1px;
+            border-color: #424242;
+            border-style: solid;
+            
+            > h1, > h3 {
+                text-shadow: rgba(0, 0, 0, 0.9487) 0 0 24px;
+            }
+            > .code {
+                margin: 10px 0;
+                > button {
+                    padding: 10px 12px;
+                    border-radius: 6px;
+                }
+                > * {
+                    margin: 0px 2px;
+                }
+            }
+
+        }
+    }
+</style>
+
+
 
 
 <script lang="javascript">
-    let CopyBtn = document.querySelector("div.intro > button[data-role=\"copy\"]"),
-        AddBtn = document.querySelector("div.intro > button[data-role=\"add\"]");
+    let CopyBtn = document.querySelector("div.intro button[data-role=\"copy\"]"),
+        AddBtn = document.querySelector("div.intro button[data-role=\"add\"]");
 
     CopyBtn.addEventListener("click", function () {
         if (!navigator.clipboard) {
             Toast.new("warn", "The navigator.clipboard API couldn't be found.")
             return;
         }
-        navigator.clipboard.writeText(document.querySelector("div.intro > code").innerText)
+        navigator.clipboard.writeText(document.querySelector("div.intro code").innerText)
             .then(function () {
                 Toast.new("check", "Succ to Copy CSS Code")
             })
@@ -38,43 +81,30 @@ import { Icon } from "astro-icon";
     })
 
     AddBtn.addEventListener("click", function () {
-        RGP.Push2DB({Degree: RGP.CurrentDegree, ColorArray: RGP.Current.ColorArray})
+        Coriander.Push2DB({Degree: Coriander.CurrentDegree, ColorArray: Coriander.Current.ColorArray})
         Toast.new("check", "Succ to Add to favo")
     })
 
-    document.addEventListener("RGP_NewGradients", function () {
-        let LinearGradient = RGP.Current.LinearGradient;
-        document.querySelector("main").style.backgroundImage = LinearGradient;
-        document.querySelector("div.intro > code").innerHTML = `background-image: ${LinearGradient};`;
+
+
+    document.querySelector("div.intro button[data-role=\"gen\"]").addEventListener("click", function () {
+        Coriander.run (
+            document.querySelector("input#ColorCount").value,
+            document.querySelector("input#degree").value
+        )
     })
-    document.addEventListener("RGP_NewDegree", function () {
 
-        //RGP.CurrentDegree
+    document.addEventListener("Coriander_NewGradients", function () {
+        let LinearGradient = Coriander.Current.LinearGradient;
+        document.querySelector(".intro > .main").style.backgroundImage = LinearGradient;
+        document.querySelector("div.intro code").innerHTML = `background-image: ${LinearGradient};`;
+    })
+    document.addEventListener("Coriander_NewDegree", function () {
+        Coriander.Current.LinearGradient = `linear-gradient(${Coriander.CurrentDegree}deg, ${Coriander.Current.ColorArray.toFormattedString()})`;
 
-        RGP.Current.LinearGradient = `linear-gradient(${RGP.CurrentDegree}deg, ${RGP.Current.ColorArray.toFormattedString()})`;
+        let LinearGradient = Coriander.Current.LinearGradient;
 
-        let LinearGradient = RGP.Current.LinearGradient;
-
-        document.querySelector("main").style.backgroundImage = LinearGradient;
-        document.querySelector("div.intro > code").innerHTML = `background-image: ${LinearGradient};`;
+        document.querySelector(".intro > .main").style.backgroundImage = LinearGradient;
+        document.querySelector("div.intro code").innerHTML = `background-image: ${LinearGradient};`;
     })
 </script>
-
-<style lang="scss">
-    main {
-        height: 100vh;
-        width: 100%;
-        flex-wrap: wrap;
-
-        background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
-
-        div {
-            width: 100%;
-        }
-
-        div.intro {
-            text-align: center;
-            text-shadow: #000 0 0px 4px;
-        }
-    }
-</style>

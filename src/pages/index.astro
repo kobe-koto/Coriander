@@ -1,11 +1,11 @@
 ---
-import Main from "@layouts/main.astro"
+import Layout from "@layouts/main.astro"
+import Header from "@components/header.astro";
 
-import CorianderMain from "@components/main.astro"
-import ToastNofication from "@components/ToastNofication.astro";
+import CorianderMain from "@components/main.astro";
 ---
-<Main>
+<Layout>
 	<script src="../assets/js/main.js"></script>
-	<ToastNofication />
+	<Header />
 	<CorianderMain />
-</Main>
+</Layout>

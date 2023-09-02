@@ -1,7 +1,7 @@
 {
-  "name": "random-gradients-picker",
+  "name": "coriander",
   "type": "module",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "license": "AGPL-3",
   "author": "kobe-koto",
   "homepage": "https://coriander.koto.cc",

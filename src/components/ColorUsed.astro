@@ -1,0 +1,50 @@
+---
+---
+<div class="settings">
+    <h1>Color Used</h1>
+    <div class="Colors">
+        
+    </div>
+</div> 
+
+<script lang="javascript">
+    document.addEventListener("Coriander_NewGradients", function () {
+        let ColorArray = Coriander.Current.ColorArray;
+        document.querySelector("div.Colors").innerHTML = "";
+        for ( let i=0; i<ColorArray.length; i++ ) {
+            let Div = document.createElement("div");
+            let Rect = document.createElement("rect");
+            Rect.style.backgroundColor = ColorArray[i];
+            Div.append(Rect)
+            Div.innerHTML += "&nbsp;" + ColorArray[i];
+            document.querySelector("div.Colors").append(Div)
+        }
+    })
+</script>
+
+<style lang="scss">
+    div.settings {
+        > div.Colors {
+            text-align: center;
+            > :global(div) {
+                display: inline-flex;
+                align-items: center;
+                font-family: "JetBrains Mono", monospace, sans-serif;
+                > :global(rect) {
+                    display: inline-block;
+                    height: 14px;
+                    width: 14px;
+                    min-width: 14px;
+                    border-style: solid;
+                    border-color: #000000;
+                    border-width: 3px;
+                }
+
+                &:not(:last-child)::after {
+                    content: "/";
+                    margin: 0 10px;
+                }
+            }
+        }
+    }
+</style>

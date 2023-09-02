@@ -1,10 +1,7 @@
 ---
-interface Props {
-	role?: string
-}
-
-import "@assets/css/base.scss"
-const { role } = Astro.props;
+import "@assets/css/base.scss";
+import ToastNofication from "@components/ToastNofication.astro";
+import Header from "@components/header.astro";
 ---
 
 <html lang="en">
@@ -12,14 +9,14 @@ const { role } = Astro.props;
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/png" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="Yet another Random Gradients Picker" />
+		<meta name="description" content="Coriander, yet another Random Gradients Picker" />
 		<meta name="author" content="kobe koto" />
 		<link rel="sitemap" href="/sitemap-index.xml">
-		<title>Random Gradients Picker - koto's Persents</title>
+		<title>Coriander - koto's Persents</title>
 	</head>
 	<body>
+		<Header />
+		<ToastNofication />
         <slot />
 	</body>
 </html>
-
-{ role === "contents" && <style>body {display: block; padding: 75px 0;}</style> }
