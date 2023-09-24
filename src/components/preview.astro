@@ -1,30 +1,29 @@
 ---
-
 ---
 
 <div class="Previews">
     <h1>Previews</h1>
     <div>
-        <div class="PreviewBG">
-            <span class="PreviewBlock__White"></span>
+        <div class="PreviewBG gradient">
+            <span class="PreviewBlock white"></span>
         </div>
         <p>As background (with a white block)</p>
     </div>
     <div>
-        <div class="PreviewBG">
-            <span class="PreviewBlock__Black"></span>
+        <div class="PreviewBG gradient">
+            <span class="PreviewBlock black"></span>
         </div>
         <p>As background (with a black block)</p>
     </div>
     <div>
-        <div class="PreviewBG__White">
-            <span class="PreviewBlock"></span>
+        <div class="PreviewBG white">
+            <span class="PreviewBlock gradient"></span>
         </div>
         <p>As block (with a white background)</p>
     </div>
     <div>
-        <div class="PreviewBG__Black">
-            <span class="PreviewBlock"></span>
+        <div class="PreviewBG black">
+            <span class="PreviewBlock gradient"></span>
         </div>
         <p>As block (with a black background)</p>
     </div>
@@ -48,13 +47,11 @@
 
                 background-image: linear-gradient(45deg, #164eac, #2f6d2e);
 
-                &__White {
-                    @extend .PreviewBG;
+                &.white {
                     background-image: none;
                     background-color: #f8f8ff;
                 }
-                &__Black {
-                    @extend .PreviewBG;
+                &.black {
                     background-image: none;
                     background-color: #1f1f1f;
                 }   
@@ -69,13 +66,11 @@
 
                     background-image: linear-gradient(45deg, #164eac, #2f6d2e);
 
-                    &__White {
-                        @extend .PreviewBlock;
+                    &.white {
                         background-image: none;
                         background-color: #f8f8ff;
                     }
-                    &__Black {
-                        @extend .PreviewBlock;
+                    &.black {
                         background-image: none;
                         background-color: #1f1f1f;
                     }
@@ -90,17 +85,23 @@
 <script lang="javascript">
     document.addEventListener("Coriander_NewGradients", function () {
         let LinearGradient = Coriander.Current.LinearGradient,
-            Targets = [...document.querySelectorAll(".PreviewBG"), ...document.querySelectorAll(".PreviewBlock")];
+            Targets = [
+                ...document.querySelectorAll(".PreviewBG.gradient"), 
+                ...document.querySelectorAll(".PreviewBlock.gradient")
+            ];
         for ( let i=0; i<Targets.length; i++ ) {
             Targets[i].style.backgroundImage = LinearGradient;
         }
     })
 
-    document.addEventListener("Coriander_NewDegree", function () {
-        Coriander.Current.LinearGradient = `linear-gradient(${Coriander.CurrentDegree}deg, ${Coriander.Current.ColorArray.toFormattedString()})`;
+    document.addEventListener("Coriander_NewDegree", function (event) {
+        Coriander.Current.LinearGradient = `linear-gradient(${event.detail.angle}deg, ${Coriander.Current.ColorArray.toFormattedString()})`;
 
         let LinearGradient = Coriander.Current.LinearGradient,
-            Targets = [...document.querySelectorAll(".PreviewBG"), ...document.querySelectorAll(".PreviewBlock")];
+            Targets = [
+                ...document.querySelectorAll(".PreviewBG.gradient"), 
+                ...document.querySelectorAll(".PreviewBlock.gradient")
+            ];
         for ( let i=0; i<Targets.length; i++ ) {
             Targets[i].style.backgroundImage = LinearGradient;
         }

@@ -1,7 +1,6 @@
 ---
 import { Icon } from "astro-icon";
 
-
 import Settings from "@components/settings.astro"
 import ColorUsed from "@components/ColorUsed.astro";
 import Preview from "@components/preview.astro";
@@ -99,8 +98,8 @@ import Preview from "@components/preview.astro";
         document.querySelector(".intro > .main").style.backgroundImage = LinearGradient;
         document.querySelector("div.intro code").innerHTML = `background-image: ${LinearGradient};`;
     })
-    document.addEventListener("Coriander_NewDegree", function () {
-        Coriander.Current.LinearGradient = `linear-gradient(${Coriander.CurrentDegree}deg, ${Coriander.Current.ColorArray.toFormattedString()})`;
+    document.addEventListener("Coriander_NewDegree", function (event) {
+        Coriander.Current.LinearGradient = `linear-gradient(${event.detail.angle}deg, ${Coriander.Current.ColorArray.toFormattedString()})`;
 
         let LinearGradient = Coriander.Current.LinearGradient;
 
