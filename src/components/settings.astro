@@ -1,34 +1,57 @@
 ---
+import AngleSelector from "@components/AngleSelector.astro"
 ---
 <div class="settings">
     <h1>Settings</h1>
-    <div>
-        Degree: 
-        <input id="degree" type="number" placeholder="Degree" />
+    <div class="settings_container">
+        <AngleSelector />
+        <div class="inputs">
+            <div>
+                Degree: 
+                <input id="degree" type="number" placeholder="Degree" />
+            </div>
+            <div>
+                Color Count: 
+                <input id="ColorCount" type="number" placeholder="Color Count" />
+            </div>
+        </div>
     </div>
-    <div>
-        Color Count: 
-        <input id="ColorCount" type="number" placeholder="Color Count" />
-    </div>
-    <br/>
 </div>
 
 <script lang="javascript">
+    // init
     document.querySelector("input#ColorCount").value = "2";
     document.querySelector("input#degree").value = "45";
 
-    document.querySelector("#degree").addEventListener("keyup", function () {
-        if (this.value > 360 || this.value < -360) {
-            this.value = this.value > 360 ? 360 : -360;
+    function HandleDegreeInputChange () {
+        if (this.value > 360 || this.value < -360 || isNaN(parseInt(this.value))) {
+            this.value = 0;
         }
-        Coriander.CurrentDegree = parseInt(this.value);
-        document.dispatchEvent(new CustomEvent("Coriander_NewDegree"))
+        document.dispatchEvent(new CustomEvent("Coriander_NewDegree", {
+            detail: {
+                angle: parseInt(this.value)
+            }
+        }))
+    }
+
+    document.querySelector("#degree").addEventListener("keyup", HandleDegreeInputChange)
+    document.querySelector("#degree").addEventListener("change", HandleDegreeInputChange)
+    document.addEventListener("Coriander_NewDegree", function (event) {
+        document.querySelector("input#degree").value = event.detail.angle
     })
 </script>
 
 
 <style lang="scss">
     .settings > div {
-        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        > .inputs > div:not(:last-child) {
+            margin-bottom: 20px;
+        }
+        > .inputs > div:last-child {
+            margin-bottom: 40px;
+        }
     }
 </style>

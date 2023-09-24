@@ -1,0 +1,83 @@
+---
+---
+<div class="AngleDisplay">
+    <div class="Angle">
+        <div class="container" style="--Angle: 45deg">
+            <div class="point"></div>
+        </div>
+    </div>
+    <p>Current Angle: <span class="AngleValue">45</span> deg.</p>
+</div>
+
+<script lang="javascript">
+    document.addEventListener("Coriander_NewDegree", function (event) {
+        document.querySelector(".AngleDisplay > .Angle >  div.container").style.setProperty("--Angle", `${event.detail.angle}deg`)
+        document.querySelector(".AngleDisplay > p > span.AngleValue").innerText = event.detail.angle;
+    })
+</script>
+
+<script lang="javascript">
+    document.querySelector(".Angle").addEventListener(
+        "mousemove", function (event) {
+            if(this.mousedown){
+                const Angle = document.querySelector(".Angle");
+
+                let centerX = -~(Angle.offsetHeight || Angle.height)/2;
+                let centerY = -~(Angle.offsetWidth || Angle.width)/2;
+                let radians = Math.atan2(event.offsetX - centerX, event.offsetY - centerY);
+                let angle = (radians * (180 / Math.PI) * -1) + 180;
+                
+                document.dispatchEvent(new CustomEvent("Coriander_NewDegree", {
+                    detail: {
+                        angle: -~angle
+                    }
+                }))
+            }
+        }
+    )
+    document.querySelector(".Angle").addEventListener("mousedown",  function () { this.mousedown = true  })
+    document.querySelector(".Angle").addEventListener("mouseup",    function () { this.mousedown = false })
+    document.querySelector(".Angle").addEventListener("mouseleave", function () { this.mousedown = false })
+</script>
+
+
+<style lang="scss">
+.AngleDisplay {
+    text-align: center;
+    width: 20vw;
+}
+
+.Angle{
+    width: 20vw;
+    height: 20vw;
+    border: 2px solid #e8454571;
+    box-sizing: border-box;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    > .container{
+        pointer-events: none;
+        height: 100%;
+        width: fit-content;
+        padding: 5px 0;
+        box-sizing: border-box;
+        transform: rotate(var(--Angle));
+        > .point{
+            width: 12px;
+            height: 12px;
+            background-color: #e84545;
+            border-radius: 50px;
+        }
+    }
+    >.content{
+        position:absolute;
+        font-size: 16px;
+        color: #5b748e;
+        font-weight: bold;
+        pointer-events: none;
+    }
+}
+</style>
