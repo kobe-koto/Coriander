@@ -1,9 +1,9 @@
 window.Coriander = {};
 if (window.localStorage && window.localStorage.getItem("CorianderDatabase")) {
     Coriander.DB = JSON.parse(window.localStorage.getItem("CorianderDatabase"));
-
     Coriander.OldDB = JSON.parse(window.localStorage.getItem("RGPDatabase"));
-    if (typeof Coriander.OldDB === "object" && Coriander.OldDB.main.length > 0) {
+
+    if (Coriander.OldDB !== null) {
         Coriander.DB = {
             main: [
                 ...Coriander.OldDB.main,
