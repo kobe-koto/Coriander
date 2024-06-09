@@ -13,12 +13,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.0.0",
-    "astro": "^3.1.2",
-    "astro-compress": "^2.0.15",
-    "astro-icon": "^0.8.1",
-    "autoprefixer": "^10.4.16",
-    "heroicons": "^2.0.18",
-    "sass": "^1.68.0"
+    "astro": "^4.10.1",
+    "@astrojs/sitemap": "^3.1.5",
+    "astro-compress": "^2.2.27",
+    "sass": "^1.77.4",
+    "astro-icon": "^1.1.0",
+    "@iconify-json/iconoir": "^1.1.44"
   }
 }

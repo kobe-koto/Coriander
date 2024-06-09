@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 import Settings from "@components/settings.astro"
 import ColorUsed from "@components/ColorUsed.astro";
@@ -11,10 +11,10 @@ import Preview from "@components/preview.astro";
         <h3>Yet another *random* gradients picker.</h3>
         <div class="code">
             <code>background-image: linear-gradient(45deg, #164eac, #2f6d2e);</code>
-            <button data-role="copy"><Icon name="heroicons:document-duplicate" /></button>
-            <button data-role="add"><Icon name="heroicons:star" /></button>
+            <button data-role="copy"><Icon name="iconoir:copy" /></button>
+            <button data-role="add"><Icon name="iconoir:star-solid" /></button>
         </div>
-        <button data-role="gen"><Icon name="heroicons:arrow-path" />&nbsp;Gen</button>
+        <button data-role="gen"><Icon name="iconoir:play-solid" />&nbsp;Gen</button>
     </div>
     <Settings />
     <ColorUsed />

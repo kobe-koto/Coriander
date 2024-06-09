@@ -1,6 +1,6 @@
 ---
 import Main from "@layouts/main.astro";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 ---
 
 <Main role="contents">
@@ -16,10 +16,10 @@ import { Icon } from "astro-icon";
         </div>
         <div class="buttons">
             <button class="circle" data-role="copy" onclick="Coriander.copy(this);">
-                <Icon name="heroicons:document-duplicate" />
+                <Icon name="iconoir:xmark-circle-solid" />
             </button>
             <button class="circle" data-role="delete" onclick="Coriander.remove(this);">
-                <Icon name="heroicons:x-mark" />
+                <Icon name="iconoir:xmark-circle-solid" />
             </button>
         </div>
     </div>
