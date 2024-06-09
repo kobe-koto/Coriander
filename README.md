@@ -2,4 +2,23 @@
 
 ## Yet another Random Gradients Picker
 
-TODO: docs
+
+
+### Install dependencies 
+
+```bash
+pnpm install
+```
+
+### to dev
+
+```bash
+pnpm dev
+```
+
+### to build
+
+```bash
+pnpm build
+```
+
