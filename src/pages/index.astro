@@ -1,0 +1,24 @@
+---
+import Layout from "@layouts/main.astro"
+
+import CorianderGenerator from "@components/coriander-generator.astro";
+import Settings from "@components/settings.astro"
+import GradientPreview from "@components/gradient-preview.astro";
+---
+
+<Layout>
+	
+	<div class="intro">
+		<CorianderGenerator />
+		<Settings />
+		<GradientPreview />
+	</div>
+</Layout>
+
+<style lang="scss">
+    div.intro {
+        width: 85%;
+        max-width: 1200px;
+        margin: auto;
+    }
+</style>

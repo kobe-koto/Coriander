@@ -1,0 +1,19 @@
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #808080;
+
+    transition: background-color 0.35s ease;
+
+    background-color: #f7eeee;
+}

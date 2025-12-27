@@ -1,0 +1,26 @@
+---
+import Layout from "@layouts/main.astro";
+import GradientRecord from "@components/gradient-record.astro";
+---
+
+<Layout>
+    <p class="Title">Favorites</p>
+
+    <div class="prototype">
+        <GradientRecord />
+    </div>
+
+    <div class="FavoriteCon">
+
+    </div>
+</Layout>
+
+<script src="@scripts/favorites"></script>
+
+<style lang="scss">
+    p.Title {
+        width: 80%;
+        margin: 30px auto;
+        font-size: x-large;
+    }
+</style>

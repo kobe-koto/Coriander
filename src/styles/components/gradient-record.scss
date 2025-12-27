@@ -1,0 +1,41 @@
+gradient-record {
+    display: flex;
+    //margin: 0 auto;
+    justify-content: center;
+    margin-bottom: 24px;
+    .gradient {
+        width: 80%;
+        max-width: 850px;
+        background-color: #303030;
+        margin-left: 40px;
+
+        border-radius: 12px;
+        border-width: 1px;
+        border-color: #424242;
+        border-style: solid;
+
+        overflow: hidden;
+
+        .preview {
+            //background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);
+            height: 175px;
+            width: 100%;
+        }
+        .description {
+            padding: 16px 18px;
+            .code {
+                word-break: break-all;
+            }
+            .date, .UUID {
+                font-size: smaller;
+                opacity: 0.65;
+            }
+        }
+    }
+    .buttons {
+        writing-mode: vertical-lr;
+        margin: auto 10px;
+        display: flex;
+        gap: 8px;
+    }
+}

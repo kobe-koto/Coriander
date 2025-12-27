@@ -1,0 +1,33 @@
+---
+import "@styles/components/gradient-preview.scss";
+---
+
+<gradient-preview>
+    <h1>Previews</h1>
+    <div>
+        <div class="PreviewBG gradient">
+            <span class="PreviewBlock white"></span>
+        </div>
+        <p>As background (with a white block)</p>
+    </div>
+    <div>
+        <div class="PreviewBG gradient">
+            <span class="PreviewBlock black"></span>
+        </div>
+        <p>As background (with a black block)</p>
+    </div>
+    <div>
+        <div class="PreviewBG white">
+            <span class="PreviewBlock gradient"></span>
+        </div>
+        <p>As block (with a white background)</p>
+    </div>
+    <div>
+        <div class="PreviewBG black">
+            <span class="PreviewBlock gradient"></span>
+        </div>
+        <p>As block (with a black background)</p>
+    </div>
+</gradient-preview>
+
+<script src="@scripts/components/gradient-preview"></script>

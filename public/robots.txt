@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /_astro/
+Disallow: /404.html
+Disallow: /favo
+Crawl-delay: 60
+Allow:/

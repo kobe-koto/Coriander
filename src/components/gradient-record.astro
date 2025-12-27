@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon/components";
+import "@styles/components/gradient-record.scss"
+---
+
+<gradient-record>
+    <div class="gradient">
+        <div class="preview" style="background-image: linear-gradient(45deg, #91e9c3, #eaaa8e);"></div>
+        <div class="description">
+            <p class="code">linear-gradient(45deg, #91e9c3, #eaaa8e)</p>
+            <p class="date">2077/07/07</p>
+            <p class="UUID">61f9dc67-5aa6-49d8-8392-200eb877c131</p>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="circle" data-role="copy">
+            <Icon name="iconoir:copy" />
+        </button>
+        <button class="circle" data-role="delete">
+            <Icon name="iconoir:trash" />
+        </button>
+    </div>
+</gradient-record>
+
+<script src="@scripts/components/gradient-record"></script>

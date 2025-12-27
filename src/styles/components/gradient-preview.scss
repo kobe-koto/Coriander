@@ -1,0 +1,50 @@
+gradient-preview {
+    --gradient: linear-gradient(45deg, #164eac, #2f6d2e);
+    > div {
+        text-align: center;
+        display: inline-block;
+        width: 45%;
+        margin: 0 1.5%;
+        margin-bottom: 24px;
+        > .PreviewBG {
+            padding: 16px 12px;
+
+            border-radius: 6px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #808080;
+
+            background-image: var(--gradient);
+
+            &.white {
+                background-image: none;
+                background-color: #f8f8ff;
+            }
+            &.black {
+                background-image: none;
+                background-color: #1f1f1f;
+            }   
+
+            > .PreviewBlock {
+                display: inline-block;
+                border-radius: 10px;
+                height: 16px;
+                width: 75%;
+                max-width: 320px;
+                box-shadow: 1px 1px 10px 0px #4a4a4a;
+
+                background-image: var(--gradient);
+
+                &.white {
+                    background-image: none;
+                    background-color: #f8f8ff;
+                }
+                &.black {
+                    background-image: none;
+                    background-color: #1f1f1f;
+                }
+
+            }
+        }
+    }
+}

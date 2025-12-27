@@ -1,0 +1,128 @@
+@import url("@assets/fonts/Outfit/main.scss");
+@import url("@assets/fonts/JetBrainsMono/main.scss");
+@import url("./scrollbar.scss");
+
+
+html {
+    font-family: "Outfit", sans-serif, system-ui;
+    margin: 0;
+    height: 100vh;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+body {
+    @extend html;
+    
+    display: block; padding: 75px 0;
+    transition: all .45s ease;
+    padding-top: 100px;
+
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    color: #f8f8ff;
+    background-color: #1f1f1f;/* #28292a */
+
+}
+
+// link
+a:link, a:visited {
+    color: #f8f8ff;
+    text-decoration: none;
+    display: inline-block;
+    transition: none;
+    &::after {
+        content: "";
+        width: 0;
+        height: 1px;
+        display: block;
+        background-color: #f8f8ff;
+        margin: 0 0 0 auto;
+    
+        transition: width 0.3s ease;
+    }
+    &:hover::after {
+        width: 100%;
+        margin: 0 auto 0 0;
+    }
+}
+
+button {
+    border: none;
+    font-size: medium;
+
+    padding: 10px 14px;
+    border-radius: 26px;
+    
+    transition: 
+        color 0.3s ease,
+        background-color 0.3s ease,
+        transform 0.15s ease;
+    
+    background-color: #28292a;
+    color: #f1f1ff;
+    &.circle {
+        padding: 9px 10px;
+        width: 40px;
+        height: 40px;
+        //line-height: 40px;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+    &:active {
+        transform: scale(.95);
+    }
+}
+input {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 32px;
+    transition: all 0.3s ease;
+    background-color: #28292a;
+    color: #f1f1ff;
+}
+
+[data-icon] {
+    height: 20px;
+    width: 20px;
+
+    transition: fill .3s ease;
+    fill: #f1f1ff;
+    vertical-align: -.25rem;
+}
+
+code, .as-code {
+    display: inline-block; 
+    box-sizing: border-box; 
+    background-color: rgba(40, 41, 42, 0.65); 
+    color: #f8f8ff;
+    padding: 12px;
+
+    text-align: left; 
+    border-radius: 6px; 
+    word-break: break-all;
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: smaller;
+
+    resize: none;
+    border: none;
+}
+
+.contents {
+    display: inline-block;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.6);
+    padding: 12px 14px;
+    margin: 0;
+    text-align: center;
+    overflow-x: auto;
+}
+
+.prototype {
+    display: none;
+}
+
+::selection {
+    background-color: #6e598c40;
+}

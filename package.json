@@ -1,0 +1,26 @@
+{
+  "name": "coriander",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "AGPL-3",
+  "author": "kobe-koto",
+  "homepage": "https://coriander.koto.cc",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.16.6",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro-compress": "^2.3.8",
+    "sass": "^1.97.1",
+    "astro-icon": "^1.1.5",
+    "@iconify-json/iconoir": "^1.2.10"
+  },
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ]
+}

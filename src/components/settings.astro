@@ -1,0 +1,33 @@
+---
+import AngleKnob from "@components/angle-knob.astro";
+import ColorSettings from "@components/color-settings.astro";
+---
+<div class="settings">
+    <h1>Settings</h1>
+    <div class="settings_container">
+        <div id="angle">
+            <AngleKnob />
+        </div>
+        <div id="colors">
+            <ColorSettings />
+        </div>
+    </div>
+</div>
+
+
+<style lang="scss">
+    .settings > div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        > div {
+            max-width: 60%;
+        }
+        > .inputs > div:not(:last-child) {
+            margin-bottom: 20px;
+        }
+        > .inputs > div:last-child {
+            margin-bottom: 40px;
+        }
+    }
+</style>

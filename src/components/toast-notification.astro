@@ -1,0 +1,27 @@
+---
+import "@styles/components/toast-notification.scss";
+import { Icon } from "astro-icon/components";
+---
+
+<toast-notification>
+
+    <div class="prototype">
+
+        <span class="symbols">
+            <Icon name="iconoir:check-circle-solid" />
+            <Icon name="iconoir:xmark-circle-solid" />
+            <Icon name="iconoir:warning-triangle-solid" />
+            <Icon name="iconoir:star-solid" />
+            <Icon name="iconoir:trash" />
+        </span>
+
+        <div class="toast">
+            <span class="symbol"></span>
+            <span class="msg"></span>
+        </div>
+
+    </div>
+
+</toast-notification>
+
+<script src="@scripts/components/toast-notification"></script>

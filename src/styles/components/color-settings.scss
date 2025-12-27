@@ -1,0 +1,35 @@
+color-settings {
+    display: block;
+    text-align: center;
+    .Colors {
+        margin: 12px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+
+        .ColorPreview {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "JetBrains Mono", monospace, sans-serif;
+            > rect {
+                display: inline-block;
+                height: 14px;
+                width: 14px;
+                min-width: 14px;
+                border-style: solid;
+                border-color: #000000;
+                border-width: 3px;
+            }
+
+            &:not(:last-child)::after {
+                content: "/";
+            }
+
+            &.prototype {
+                display: none;
+            }
+        }
+    }
+}
