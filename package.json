@@ -7,10 +7,8 @@
   "homepage": "https://coriander.pages.dev",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
-    "preview": "astro build && astro preview",
-    "astro": "astro"
+    "preview": "astro build && astro preview"
   },
   "dependencies": {
     "astro": "^5.16.6",
