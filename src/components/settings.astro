@@ -29,5 +29,12 @@ import ColorSettings from "@components/color-settings.astro";
         > .inputs > div:last-child {
             margin-bottom: 40px;
         }
+        @media (max-width: 920px) {
+            flex-direction: column;
+            > div {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+        }
     }
 </style>

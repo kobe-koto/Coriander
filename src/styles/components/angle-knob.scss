@@ -1,6 +1,8 @@
 angle-knob {
-    width: 20vw;
-    height: 20vw;
+    --angle-knob-size: 20vw;
+
+    width: var(--angle-knob-size);
+    height: var(--angle-knob-size);
     border: 2px solid #e8454571;
     box-sizing: border-box;
     border-radius: 50%;
@@ -26,5 +28,26 @@ angle-knob {
     > input {
         position: absolute;
         width: 48px;
+    }
+
+    @media (max-width: 920px) {
+        --angle-knob-size: 40vw;
+    }
+    @media (max-width: 620px) {
+        --angle-knob-size: 45vw;
+    }
+    @media (max-width: 480px) {
+        --angle-knob-size: 50vw;
+    }
+    @media (max-width: 360px) {
+        --angle-knob-size: 60vw;
+    }
+    @media (max-width: 290px) {
+        --angle-knob-size: 70vw;
+    }
+    @media (max-width: 220px) {
+        > input {
+            display: none;
+        }
     }
 }
