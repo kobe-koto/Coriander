@@ -11,10 +11,10 @@
     "preview": "astro build && astro preview"
   },
   "dependencies": {
-    "astro": "^5.16.6",
-    "@astrojs/sitemap": "^3.6.0",
-    "astro-compress": "^2.3.8",
-    "sass": "^1.97.1",
+    "astro": "^5.17.3",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro-compress": "^2.3.9",
+    "sass": "^1.97.3",
     "astro-icon": "^1.1.5",
     "@iconify-json/iconoir": "^1.2.10"
   },
